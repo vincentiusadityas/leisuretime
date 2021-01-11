@@ -1,0 +1,44 @@
+<section class="saved-activity-section">
+    <div class="container-fluid mt-4 p-4">
+        <h3 class="choose-title">My movie collections</h3>
+        <div id="movie-content" class="row d-flex justify-content-center">
+            {% if saved_movies %}
+                <p hidden id="empty-movie-collection-message"> You don't have any saved movies :( <br> Go get <a href="{{ url_for('main.view_all', activity='movies') }}">one</a> now!</p>
+            {% for movie in saved_movies %}
+                <div id="card-{{movie['movie_id']}}" class="col-xs-12 col-sm-6 col-md-4 col-lg-3 p-0">
+                    <div class="movie-card">
+                        <div class="movie-img-content">
+                            <div class="content-overlay"></div>
+                            <img
+                                class="img-fluid movie-img"
+                                src="{{movie['movie_img_src']}}"
+                                onError="this.onerror=null;this.src='https://i.ebayimg.com/images/g/1EMAAMXQdGJR2-n3/s-l1600.jpg';"
+                                alt="Sorry, something went wrong"
+                            />
+                            <div class="content-details fadeIn-bottom">
+                                <h3 class="content-title" id="content-title-{{movie['movie_id']}}">remove movie</h3>
+                                <p class="content-text" class="content-text" id="content-text-{{movie['movie_id']}}">Click to remove movie from collection</p>
+                                <a id="icon-{{movie['movie_id']}}" class="heart-icon liked remove-movie-btn" title="Remove Movie">
+                                    <i class="fa fa-times-circle"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row movie-description p-3 d-flex justify-content-between align-items-center">
+                            <div class="col-md-12">
+                                <a href={{movie['href']}} target="_blank">    
+                                    <h3 class="movie-title">{{movie['movie_title']}}</h3>
+                                </a>
+                            </div>
+                            <div class="col-md-12">
+                                <h3 class="movie-vote">{{movie['movie_rating']}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            {% else %}
+                <p id="empty-movie-collection-message"> You don't have any saved movies :( <br> Go get <a href="{{ url_for('main.view_all', activity='movies') }}">one</a> now!</p>
+            {% endif %} 
+        </div>
+    </div>
+</section>

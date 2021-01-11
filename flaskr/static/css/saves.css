@@ -1,0 +1,94 @@
+@media (min-width: 768px) {
+    /* show 3 items */
+    .carousel-inner .active,
+    .carousel-inner .active+.carousel-item,
+    .carousel-inner .active+.carousel-item+.carousel-item {
+        display: block;
+    }
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left),
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left)+.carousel-item,
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left)+.carousel-item+.carousel-item {
+        transition: none;
+    }
+    .carousel-inner .carousel-item-next,
+    .carousel-inner .carousel-item-prev {
+        position: relative;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+    .carousel-inner .active.carousel-item+.carousel-item+.carousel-item+.carousel-item {
+        position: absolute;
+        top: 0;
+        right: -33.3333%;
+        z-index: -1;
+        display: block;
+        visibility: visible;
+    }
+    /* left or forward direction */
+    .active.carousel-item-left+.carousel-item-next.carousel-item-left,
+    .carousel-item-next.carousel-item-left+.carousel-item,
+    .carousel-item-next.carousel-item-left+.carousel-item+.carousel-item,
+    .carousel-item-next.carousel-item-left+.carousel-item+.carousel-item+.carousel-item {
+        position: relative;
+        -webkit-transform: translate3d(-100%, 0, 0);
+        transform: translate3d(-100%, 0, 0);
+        visibility: visible;
+    }
+    /* farthest right hidden item must be abso position for animations */
+    .carousel-inner .carousel-item-prev.carousel-item-right {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        display: block;
+        visibility: visible;
+    }
+    /* right or prev direction */
+    .active.carousel-item-right+.carousel-item-prev.carousel-item-right,
+    .carousel-item-prev.carousel-item-right+.carousel-item,
+    .carousel-item-prev.carousel-item-right+.carousel-item+.carousel-item,
+    .carousel-item-prev.carousel-item-right+.carousel-item+.carousel-item+.carousel-item {
+        position: relative;
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+        visibility: visible;
+        display: block;
+    }
+    #myCarousel .carousel-inner .carousel-item {
+        margin-right: 0%;
+    }
+    .carousel-control-next-icon,
+    .carousel-control-prev-icon {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        background: grey no-repeat center center;
+        background-size: 100% 100%;
+    }
+    .carousel-control-next-icon {
+        background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOAAAADgCAMAAAAt85rTAAAAY1BMVEX///8AAADw8PDt7e3z8/OEhIRiYmJ+fn5xcXFqampTU1OQkJDn5+d3d3fg4ODa2tpaWlpMTEw+Pj43NzcuLi4fHx8WFhaKiopFRUW1tbWvr6+hoaGlpaUnJyebm5sNDQ3Ozs4iYhprAAACmklEQVR4nO3dB3LCQAyFYQROJw1ID5D7nzIhZUih+CV4NHr5vxNII82usXdFrwcAAAAAAAAAAAAAAAAAAAAAAIBO3DXZEXTrPkbZIXTqISJGxjW8j4VxdhidmcWbsWkNH+PDJDuUTsxiaWJYw4f4bJodzs6dxFfTfnZEuzWL766suvR7/V4zHGRHtTs/67dwbVPDm5X5vWRoUsNV/flmblHDvbX5vWQ4zI7u79b157vyu8XB5vwiitdwU3++K73SnG7PL+IsO8rf29qfxbv0sF1+ZWvYqj8L1/CofX4R59nR6lr356t6v/H3pfzqvWmT+rNg/S60+mWHK9P6s179jqX8brPDlWn1q/ee+1LK7zI7XJn7+nIr5XecHa6qGXnXr7kyr99Yyq/c/tBcS/ldZMeraiZSfuX2h/5cym8/O15VX6tfufVlIKUXR9nxqgZTKb9y64tYv8PseFUDbX8vt74MtfqdZserGmr7e7n1RazfQXa8qqG2v5dbX87M6yfmV259EfPby45X5d6f51p+N9nxqsT8yvWnmN9JdryqJ/P8/BO0b1H/RUbeBsttE/4bvf+jmv/D9n/oUvcfvP6vnPxfOsk1LNil7i9+/T+9+H98kWtYsEvdP4D6f8L2P4Tgf4zE/yCQ/1Eu/8N4PfU4ZcGVRjwQW+9As/+RZv9LBf7XCtSLPRUHd7gfvVcv103LXT7zv14nXXCNmmup+xVXqYZFhwW4XzNvPSigaP0WWnVpyUv0H1oM6yg+cMV93Mq2gTnz4vVb2DjyqPD6srR+aJXL4DH3sWPrBsc5Df9bOfrPYH1Zch/euGL8pll+/gNU/Ufg+g8x9h9D7T9I3H8UvP8wf/+/YwAAAAAAAAAAAAAAAAAAAAAAAOjKM11FHphc/kKPAAAAAElFTkSuQmCC");
+        margin-left: 110px;
+        border-radius: 50%;
+        border-color: black;
+        border-style: solid;
+        -webkit-transform: scale(-1, 1);
+        -khtml-transform: scale(-1, 1);
+        -moz-transform: scale(-1, 1);
+        -ms-transform: scale(-1, 1);
+        -o-transform: scale(-1, 1);
+        transform: scale(-1, 1);
+    }
+    .carousel-control-prev-icon {
+        background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOAAAADgCAMAAAAt85rTAAAAY1BMVEX///8AAADw8PDt7e3z8/OEhIRiYmJ+fn5xcXFqampTU1OQkJDn5+d3d3fg4ODa2tpaWlpMTEw+Pj43NzcuLi4fHx8WFhaKiopFRUW1tbWvr6+hoaGlpaUnJyebm5sNDQ3Ozs4iYhprAAACmklEQVR4nO3dB3LCQAyFYQROJw1ID5D7nzIhZUih+CV4NHr5vxNII82usXdFrwcAAAAAAAAAAAAAAAAAAAAAAIBO3DXZEXTrPkbZIXTqISJGxjW8j4VxdhidmcWbsWkNH+PDJDuUTsxiaWJYw4f4bJodzs6dxFfTfnZEuzWL766suvR7/V4zHGRHtTs/67dwbVPDm5X5vWRoUsNV/flmblHDvbX5vWQ4zI7u79b157vyu8XB5vwiitdwU3++K73SnG7PL+IsO8rf29qfxbv0sF1+ZWvYqj8L1/CofX4R59nR6lr356t6v/H3pfzqvWmT+rNg/S60+mWHK9P6s179jqX8brPDlWn1q/ee+1LK7zI7XJn7+nIr5XecHa6qGXnXr7kyr99Yyq/c/tBcS/ldZMeraiZSfuX2h/5cym8/O15VX6tfufVlIKUXR9nxqgZTKb9y64tYv8PseFUDbX8vt74MtfqdZserGmr7e7n1RazfQXa8qqG2v5dbX87M6yfmV259EfPby45X5d6f51p+N9nxqsT8yvWnmN9JdryqJ/P8/BO0b1H/RUbeBsttE/4bvf+jmv/D9n/oUvcfvP6vnPxfOsk1LNil7i9+/T+9+H98kWtYsEvdP4D6f8L2P4Tgf4zE/yCQ/1Eu/8N4PfU4ZcGVRjwQW+9As/+RZv9LBf7XCtSLPRUHd7gfvVcv103LXT7zv14nXXCNmmup+xVXqYZFhwW4XzNvPSigaP0WWnVpyUv0H1oM6yg+cMV93Mq2gTnz4vVb2DjyqPD6srR+aJXL4DH3sWPrBsc5Df9bOfrPYH1Zch/euGL8pll+/gNU/Ufg+g8x9h9D7T9I3H8UvP8wf/+/YwAAAAAAAAAAAAAAAAAAAAAAAOjKM11FHphc/kKPAAAAAElFTkSuQmCC");
+        margin-right: 110px;
+        border-radius: 50%;
+        border-color: black;
+        border-style: solid;
+    }
+}
+
+@media (max-width: 180px) and (max-width: 767px) {
+    #myCarousel .carousel-inner div.carousel-item {
+        margin-right: 100%;
+    }
+}

@@ -1,0 +1,54 @@
+<div class="container carousel-title">
+    <h4>Best 10 Books of the 20th Century</h4>
+    <a href="{{ url_for('main.view_all', activity='books') }}" class="view-all-href">View all</a>
+</div>
+<div>
+    <div class="container text-center my-3">
+        <div class="row mx-auto my-auto">
+            <div id="activityCarousel" class="carousel slide w-100" data-ride="carousel">
+                <div class="carousel-inner w-100" role="listbox">
+                    <div class="carousel-item active">
+                        <div class="col-md-4">
+                            <div class="card card-body">
+                                <img class="card-img-top card-img-book img-fluid" src="{{books[0]['img']}}">
+                                <br>
+                                <a href="{{books[0]['href']}}" , target="_blank" style="color:black;">
+                                    <h4 class="card-title">{{books[0]['title']}}</h4>
+                                </a>
+                                <h5 class="card-text book-title">by {{books[0]['author']}}</h5>
+                                <div class="book-rating">
+                                    {{books[0]['ratingElem']}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% for book in books[1:10] %}
+                    <div class="carousel-item">
+                        <div class="col-md-4">
+                            <div class="card card-body">
+                                <img class="card-img-top card-img-book img-fluid" src="{{book['img']}}">
+                                <br>
+                                <a href="{{book['href']}}" , target="_blank" style="color:black;">
+                                    <h4 class="card-title">{{book['title']}}</h4>
+                                </a>
+                                <h5 class="card-text book-title">by {{book['author']}}</h5>
+                                <div class="book-rating">
+                                    {{book['ratingElem']}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <a class="carousel-control-prev w-auto" href="#activityCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next w-auto" href="#activityCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

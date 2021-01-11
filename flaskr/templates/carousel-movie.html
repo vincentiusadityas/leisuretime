@@ -1,0 +1,52 @@
+<div class="container carousel-title">
+    <h4>Top 10 Movies You Should Watch</h4>
+    <a href="{{ url_for('main.view_all', activity='movies') }}" class="view-all-href">View all</a>
+</div>
+<div>
+    <div class="container-fluid">
+        <div class="container text-center my-3">
+            <div class="row mx-auto my-auto">
+                <div id="activityCarousel2" class="carousel slide w-100" data-ride="carousel">
+                    <div class="carousel-inner w-100" role="listbox">
+                        <div class="carousel-item active">
+                            <div class="col-md-4">
+                                <div class="card card-body">
+                                    <img class="card-img-top card-img-book img-fluid" src="{{movies[0]['movie_img_src']}}">
+                                    <br>
+                                    <h4 class="card-title">{{movies[0]['movie_title']}}</h4>
+                                    <h5 class="card-text book-title">{{movies[0]['movie_release_date']}}</h5>
+                                    <div class="movie-rating">
+                                        {{movies[0]['movie_rating']}}%
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% for movie in movies[1:10] %}
+                        <div class="carousel-item">
+                            <div class="col-md-4">
+                                <div class="card card-body">
+                                    <img class="card-img-top card-img-book img-fluid" src="{{movie['movie_img_src']}}">
+                                    <br>
+                                    <h4 class="card-title">{{movie['movie_title']}}</h4>
+                                    <h5 class="card-text book-title">{{movie['movie_release_date']}}</h5>
+                                    <div class="movie-rating">
+                                        {{movie['movie_rating']}}%
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <a class="carousel-control-prev w-auto" href="#activityCarousel2" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next w-auto" href="#activityCarousel2" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon bg-dark border border-dark rounded-circle" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

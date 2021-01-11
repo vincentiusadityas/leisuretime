@@ -1,0 +1,42 @@
+{% extends "base.html" %} 
+{% block content %}
+    <script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+    <section id="profile-page">
+        <h2>My Profile</h2>
+        <h5>First name: {{data.firstname}}</h5>
+        <h5>Last name: {{data.lastname}}</h5>
+        <h5>Email: {{data.email}}</h5>
+        <div class="container activities-tabs">
+        <div>
+            <h3 class="choose-title">My Saved Activities</h3>
+        </div>
+        <ul id="myTabs" class="nav nav-tabs nav-justified" role="tablist" data-tabs="tabs">
+            <li class="nav-item active">
+                <a class="nav-link active show" href="#book" data-toggle="tab">Books</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#movie" data-toggle="tab">Movies</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#tvshow" data-toggle="tab">TV Shows</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#music" data-toggle="tab">Music (not yet available)</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade in active show" id="book">
+                {% include "saved-book.html" %}
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="movie">
+                {% include "saved-movie.html" %}
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="tvshow">
+                {% include "saved-tvshow.html" %}
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="music">
+                <h4>Billboard's Favorite Songs</h4>
+            </div>
+        </div>
+    </section>
+{% endblock %}

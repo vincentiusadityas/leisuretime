@@ -1,0 +1,77 @@
+{% extends "base.html" %} 
+
+{% block content %}
+
+<section id="index-top-section">
+    <h1>Leisure Time</h1>
+    <h4>
+        Feeling overwhelmed by your daily activites? <br>
+        Go rest and enjoy your day! <br>
+    </h4>
+    <p>
+        Leisure reduces stress and prevents depression. It allows you to step back — physically 
+        but most important, mentally — from stress. Your mind and body will tune, 
+        you will feel relaxed. During leisure activities, you will be disconnected from the 
+        outside world.
+    </p>
+    <a href="{{ url_for('main.activities')}}" id="button-browse" class="btn btn-primary btn-lg">Browse Activity</a>
+</section>
+
+<!-- Page Features -->
+<section id="leisure-items-section">
+    <h3 class="slogan"> relaxed - refreshed - recharged </h3>
+    <div class="row">
+        <div class="column">
+            <div class="card card-leisure-item">
+                <img class="card-img-top" src="https://i.ytimg.com/vi/wAPCSnAhhC8/maxresdefault.jpg" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">Reading Books</h5>
+                    <p class="card-text">
+                        Reading books benefits both your physical and mental health, 
+                        and those benefits can last a lifetime. You are also keeping your mind engaged 
+                        as you grow older.
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ url_for('main.view_all', activity='books') }}" class="btn btn-primary">Find a Book!</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card card-leisure-item">
+                <img class="card-img-top" src="https://fiverr-res.cloudinary.com/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/149827670/original/88492f2538aa415181d39a9c573a64c46870ad85.jpg" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">Watching Movies</h5>
+                    <p class="card-text">
+                        Watching a movie allows you to relax, disconnect and have a good time. It can decrease anxiety, 
+                        inspire motivation and can even give you energy for real life!
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ url_for('main.view_all', activity='movies') }}" class="btn btn-primary">Find a Movie!</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card card-leisure-item">
+                <img class="card-img-top" src="https://i.ytimg.com/vi/DWcJFNfaw9c/maxresdefault.jpg" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">Listening to Music</h5>
+                    <p class="card-text">
+                        Music improves mood. It can benefit overall well-being, 
+                        help regulate emotions, and create happiness and relaxation in everyday life.
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <a href="#" class="btn btn-primary disabled">Not yet available</a>
+                </div>
+            </div>
+        </div>
+    </div>
+<section>
+
+<!-- /.row -->
+
+{% endblock %}

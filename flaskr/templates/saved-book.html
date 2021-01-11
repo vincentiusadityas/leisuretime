@@ -1,0 +1,41 @@
+<section class="saved-activity-section">
+    <div class="container-fluid mt-4 p-4">
+        <h3 class="choose-title">My book collections</h3>
+        <div id="book-content" class="row d-flex justify-content-center">
+            <table id="book-content-table" class="table table-striped book-content-table">
+                <tbody id="book-content-body">
+                    {% if saved_books %}
+                        <p hidden id="empty-book-collection-message"> You don't have any saved books :( <br> Go get <a href="{{ url_for('main.view_all', activity='books') }}">one</a> now!</p>
+                        {% for book in saved_books %}
+                        <tr id="tr-{{book['book_id']}}">
+                            <td class="book-cover-td">
+                                <img class="img-cover-small" src="{{book['book_img_src']}}">
+                            </td>
+                            <td>
+                                <div class="book-description">
+                                    <a href="{{book['href']}}" , target="_blank" style="color:black;">
+                                        <p class="title ">{{book['book_title']}}
+                                            <span class="author ">by {{book['book_author']}}</span>
+                                        </p>
+                                    </a>
+                                    <div id="ratingElem-{{book['book_id']}}" class="book-rating-table">
+                                        {{book['book_rating_elem']}}
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <button id="remove-book-btn-{{book['book_id']}}" class="remove-book-btn">
+                                    REMOVE BOOK
+                                </button>
+                            </td>
+                            <input type="hidden" id="book_id-{{book['book_id']}}" value="{{book['book_id']}}">
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <p id="empty-book-collection-message"> You don't have any saved books :( <br> Go get <a href="{{ url_for('main.view_all', activity='books') }}">one</a> now!</p>
+                    {% endif %} 
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

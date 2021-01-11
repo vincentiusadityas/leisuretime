@@ -1,0 +1,44 @@
+<section class="saved-activity-section">
+    <div class="container-fluid mt-4 p-4">
+        <h3 class="choose-title">My TV Show collections</h3>
+        <div id="tvshow-content" class="row d-flex justify-content-center">
+            {% if saved_tvshows %}
+                <p hidden id="empty-tvshow-collection-message"> You don't have any saved tv shows :( <br> Go get <a href="{{ url_for('main.view_all', activity='tv shows') }}">one</a> now!</p>
+            {% for tvshow in saved_tvshows %}
+                <div id="card-{{tvshow['tvshow_id']}}" class="col-xs-12 col-sm-6 col-md-4 col-lg-3 p-0">
+                    <div class="tvshow-card">
+                        <div class="tvshow-img-content">
+                            <div class="content-overlay"></div>
+                            <img
+                                class="img-fluid tvshow-img"
+                                src="{{tvshow['tvshow_img_src']}}"
+                                onError="this.onerror=null;this.src='https://i.ebayimg.com/images/g/1EMAAMXQdGJR2-n3/s-l1600.jpg';"
+                                alt="Sorry, something went wrong"
+                            />
+                            <div class="content-details fadeIn-bottom">
+                                <h3 class="content-title" id="content-title-{{tvshow['tvshow_id']}}">remove show</h3>
+                                <p class="content-text" class="content-text" id="content-text-{{tvshow['tvshow_id']}}">Click to remove show from collection</p>
+                                <a id="icon-{{tvshow['tvshow_id']}}" class="heart-icon liked remove-tvshow-btn" title="Remove Show">
+                                    <i class="fa fa-times-circle"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row tvshow-description p-3 d-flex justify-content-between align-items-center">
+                            <div class="col-md-12">
+                                <a href={{tvshow['href']}} target="_blank">    
+                                    <h3 class="tvshow-title">{{tvshow['tvshow_title']}}</h3>
+                                </a>
+                            </div>
+                            <div class="col-md-12">
+                                <h3 class="tvshow-vote">{{tvshow['tvshow_rating']}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            {% else %}
+                <p id="empty-tvshow-collection-message"> You don't have any saved tv shows :( <br> Go get <a href="{{ url_for('main.view_all', activity='tv shows') }}">one</a> now!</p>
+            {% endif %} 
+        </div>
+    </div>
+</section>

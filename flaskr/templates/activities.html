@@ -1,0 +1,42 @@
+{% extends "base.html" %} {% block content %}
+<section id="activities-page">
+    {% if data %}
+        <h2>Hello, {{data.firstname}} {{data.lastname}}!</h2>
+    {% else %}
+        <h2>Hello There, Visitor! <span class="hello-span"><a href="{{ url_for('auth.login_page') }}">Login</a> to save an activity</span></h2>
+    {% endif %}
+    <div class="container activities-tabs">
+        <div>
+            <h3 class="choose-title">Choose your activity</h3>
+        </div>
+        <ul id="myTabs" class="nav nav-tabs nav-justified" role="tablist" data-tabs="tabs">
+            <li class="nav-item active">
+                <a class="nav-link active show" href="#book" data-toggle="tab">Books</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#movie" data-toggle="tab">Movies</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#tvshows" data-toggle="tab">TV Shows</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#music" data-toggle="tab">Music (not yet available)</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade in active show" id="book">
+                {% include "carousel-book.html" %}
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="movie">
+                {% include "carousel-movie.html" %}
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="tvshows">
+                {% include "carousel-tvshows.html" %}
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="music">
+                <h4>Billboard's Favorite Songs</h4>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
