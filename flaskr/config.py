@@ -8,8 +8,9 @@ class Config(object):
     CSRF_ENABLED = True
     SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SECRET_KEY = '9OLWxND4o83j4K4iuopO'
-    STATIC_FOLDER = f"{os.getenv('APP_FOLDER')}/project/static"
+    TMDB_API_KEY = os.getenv('TMDB_API_KEY')
+    SECRET_KEY = "eac634658c6fdd527d1cfff5"
+    STATIC_FOLDER = f"{os.getenv('APP_FOLDER')}/flaskr/static"
 
 
 class ProductionConfig(Config):

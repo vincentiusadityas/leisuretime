@@ -5,9 +5,9 @@ from bs4 import BeautifulSoup
 from flask import Markup
 from flask_login import current_user
 from .models import *
-from . import db
+from . import db, app
 
-TMDB_API_KEY = "cf2cf097b666e6ab18b62a58db2ff0ef"
+TMDB_API_KEY = app.config["TMDB_API_KEY"]
 
 def bookScrapper():
     books = []
