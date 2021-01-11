@@ -7,4 +7,4 @@ build:
     web: Dockerfile
 
 run:
-  web: gunicorn app:app
+  web: gunicorn manage:app
