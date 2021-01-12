@@ -15,6 +15,7 @@ class Config(object):
 
 class ProductionConfig(Config):
     DEBUG = False
+    FLASK_ENV = "production"
 
 
 class StagingConfig(Config):
@@ -25,6 +26,7 @@ class StagingConfig(Config):
 class DevelopmentConfig(Config):
     DEVELOPMENT = True
     DEBUG = True
+    FLASK_ENV = "development"
 
 
 class TestingConfig(Config):

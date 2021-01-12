@@ -1,3 +1,4 @@
+import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -6,7 +7,7 @@ from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"/view-all/*": {"origins": "*"}})
-app.config.from_object("flaskr.config.DevelopmentConfig")
+app.config.from_object(os.getenv('APP_SETTINGS'))
 
 # init SQLAlchemy so we can use it later in our models
 db = SQLAlchemy()
