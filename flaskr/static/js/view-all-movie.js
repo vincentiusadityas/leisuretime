@@ -140,6 +140,9 @@ $(document).ready(function() {
             movie_title: movie.movie_title,
             movie_release_date: movie.movie_release_date,
             movie_rating: movie.movie_rating,
+            movie_genre_ids: movie.movie_genre_ids,
+            movie_genre_names: movie.movie_genre_names,
+            movie_overview: movie.movie_overview,
             movie_img_src: movie.movie_img_src
         }
         $.ajax({
@@ -160,8 +163,8 @@ $(document).ready(function() {
     function showMovieModalDetail(movie) {
         // const detailModal = document.getElementById('detailModal')
         console.log(movie)
-        $('#detailModalBodyTitle').text("Movie Details");
-        $('#detailModalTitle').text(movie['movie_title']);
+        $('#detailModalTitle').text("Movie Details");
+        $('#detailModalBodyTitle').text(movie['movie_title']);
         $('#detailModalRelease').text("Released at " + movie['movie_release_date']);
         $('#detailModalOverview').text(movie['movie_overview']);
         $('#detailModalRating').text(movie['movie_rating']+"%");
@@ -176,7 +179,6 @@ $(document).ready(function() {
         $('#detailModalMoreDetails').attr('href', movie['href']);
 
         $('#detailModal').modal('show');
-        // detailModal.
 
         // Find al rating items
         // const ratings = document.querySelectorAll(".movie-rating");
@@ -210,8 +212,6 @@ $(document).ready(function() {
     }
 
 
-    
-
     function showMovies(movies, page=1, total_pages) {
         mainContent.innerHTML = "";
 
@@ -226,7 +226,6 @@ $(document).ready(function() {
             const moviePoster = movie.movie_img_src;
             const movieVote = movie.movie_rating;
             const movieElm = document.createElement("div");
-            const movieHref = movie.href;
             movieElm.classList.add(
                 "col-xs-12",
                 "col-sm-6",

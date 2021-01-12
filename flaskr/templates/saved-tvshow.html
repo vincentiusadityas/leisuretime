@@ -5,6 +5,7 @@
             {% if saved_tvshows %}
                 <p hidden id="empty-tvshow-collection-message"> You don't have any saved tv shows :( <br> Go get <a href="{{ url_for('main.view_all', activity='tv shows') }}">one</a> now!</p>
             {% for tvshow in saved_tvshows %}
+                <input type="hidden" id="tvshow-{{tvshow['tvshow_id']}}" value="{{tvshow}}" />
                 <div id="card-{{tvshow['tvshow_id']}}" class="col-xs-12 col-sm-6 col-md-4 col-lg-3 p-0">
                     <div class="tvshow-card">
                         <div class="tvshow-img-content">
@@ -25,7 +26,7 @@
                         </div>
                         <div class="row tvshow-description p-3 d-flex justify-content-between align-items-center">
                             <div class="col-md-12">
-                                <a href={{tvshow['href']}} target="_blank">    
+                                <a id="tvshow-modal-{{tvshow['tvshow_id']}}" class="activity-modal-btn" data-toggle="modal"  href="">    
                                     <h3 class="tvshow-title">{{tvshow['tvshow_title']}}</h3>
                                 </a>
                             </div>

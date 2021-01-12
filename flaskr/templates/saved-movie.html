@@ -5,6 +5,7 @@
             {% if saved_movies %}
                 <p hidden id="empty-movie-collection-message"> You don't have any saved movies :( <br> Go get <a href="{{ url_for('main.view_all', activity='movies') }}">one</a> now!</p>
             {% for movie in saved_movies %}
+                <input type="hidden" id="movie-{{movie['movie_id']}}" value="{{movie}}" />
                 <div id="card-{{movie['movie_id']}}" class="col-xs-12 col-sm-6 col-md-4 col-lg-3 p-0">
                     <div class="movie-card">
                         <div class="movie-img-content">
@@ -25,7 +26,7 @@
                         </div>
                         <div class="row movie-description p-3 d-flex justify-content-between align-items-center">
                             <div class="col-md-12">
-                                <a href={{movie['href']}} target="_blank">    
+                                <a id="movie-modal-{{movie['movie_id']}}" class="activity-modal-btn" data-toggle="modal"  href="">   
                                     <h3 class="movie-title">{{movie['movie_title']}}</h3>
                                 </a>
                             </div>

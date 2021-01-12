@@ -140,6 +140,9 @@ $(document).ready(function() {
             tvshow_title: tvshow.tvshow_title,
             tvshow_release_date: tvshow.tvshow_release_date,
             tvshow_rating: tvshow.tvshow_rating,
+            tvshow_genre_ids: tvshow.tvshow_genre_ids,
+            tvshow_genre_names: tvshow.tvshow_genre_names,
+            tvshow_overview: tvshow.tvshow_overview,
             tvshow_img_src: tvshow.tvshow_img_src
         }
         $.ajax({
@@ -159,8 +162,8 @@ $(document).ready(function() {
 
     function showTVShowModalDetail(tvshow) {
 
-        $('#detailModalBodyTitle').text("TV Show Details");
-        $('#detailModalTitle').text(tvshow['tvshow_title']);
+        $('#detailModalTitle').text("TV Show Details");
+        $('#detailModalBodyTitle').text(tvshow['tvshow_title']);
         $('#detailModalRelease').text("Released at " + tvshow['tvshow_release_date']);
         $('#detailModalOverview').text(tvshow['tvshow_overview']);
         $('#detailModalRating').text(tvshow['tvshow_rating']+"%");
@@ -175,7 +178,6 @@ $(document).ready(function() {
         $('#detailModalMoreDetails').attr('href', tvshow['href']);
 
         $('#detailModal').modal('show');
-        // detailModal.
 
         // Find al rating items
         // const ratings = document.querySelectorAll(".tvshow-rating");

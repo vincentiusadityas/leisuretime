@@ -1,6 +1,49 @@
 {% extends "base.html" %} 
 {% block content %}
     <script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+    <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detailModalTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img
+                                    id="detailModalImg"
+                                    class="img-fluid movie-img-modal"
+                                    src="https://i.ebayimg.com/images/g/1EMAAMXQdGJR2-n3/s-l1600.jpg"
+                                    onError="this.onerror=null;this.src='https://i.ebayimg.com/images/g/1EMAAMXQdGJR2-n3/s-l1600.jpg';"
+                                    alt="Sorry, something went wrong"
+                                />
+                            </div>
+                            <div class="col-md-6">
+                                <h3 id="detailModalBodyTitle"></h3>
+                                <p id="detailModalRelease"></p>
+                                <p id="detailModalOverview"></p>
+                                <div class="row d-flex justify-content-center">
+                                    <div class="col-lg-3 col-md-4 col-sm-3 col-4 col-modal-movie-rating">
+                                        <div id="detailModalRating" class="modal-detail-rating"></div>
+                                    </div>
+                                    <p class="col-user-rating col-lg-9 col-md-8 col-sm-9 col-8">User Rating</p>
+                                </div>
+                                <div id="detailModalGenres"></div>
+                                <a id="detailModalMoreDetails" target="_blank"><img class="tmdb-icon" src="{{ url_for('static', filename='/images/tmdb.svg') }}"/> More details!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <section id="profile-page">
         <h2>My Profile</h2>
         <h5>First name: {{data.firstname}}</h5>

@@ -47,6 +47,7 @@ def profile():
     movies_db = Movie.query.filter_by(user_id=current_user.id).filter_by(type="movie").all()
     saved_movies = []
     for movie in movies_db:
+        del movie.__dict__['_sa_instance_state']
         a_movie = movie.__dict__
         saved_movies.append(a_movie)
 
@@ -54,6 +55,7 @@ def profile():
     tvshows_db = TVShow.query.filter_by(user_id=current_user.id).filter_by(type="tvshow").all()
     saved_tvshows = []
     for tvshow in tvshows_db:
+        del tvshow.__dict__['_sa_instance_state']
         a_tvshow = tvshow.__dict__
         saved_tvshows.append(a_tvshow)
     
@@ -285,11 +287,12 @@ def saveActivity():
         movie_release_date = request.json['movie_release_date']
         movie_rating = request.json['movie_rating']
         movie_genre_ids = request.json['movie_genre_ids']
+        movie_overview = request.json['movie_overview']
         movie_img_src = request.json['movie_img_src']
 
         new_movie = Movie(movie_id=movie_id, movie_title=movie_title, href=movie_href,
                         movie_release_date=movie_release_date, movie_rating=movie_rating,
-                        movie_img_src=movie_img_src, users=user)
+                        movie_img_src=movie_img_src, movie_overview=movie_overview, users=user)
         
         # for g_id in movie_genre_ids:
         #     g_name = genres['movie_genres'][g_id]
@@ -306,11 +309,12 @@ def saveActivity():
         tvshow_release_date = request.json['tvshow_release_date']
         tvshow_rating = request.json['tvshow_rating']
         tvshow_genre_ids = request.json['tvshow_genre_ids']
+        tvshow_overview = request.json['tvshow_overview']
         tvshow_img_src = request.json['tvshow_img_src']
 
         new_tvshow = TVShow(tvshow_id=tvshow_id, tvshow_title=tvshow_title, href=tvshow_href,
                         tvshow_release_date=tvshow_release_date, tvshow_rating=tvshow_rating,
-                        tvshow_img_src=tvshow_img_src, users=user)
+                        tvshow_img_src=tvshow_img_src, tvshow_overview=tvshow_overview, users=user)
 
         user.activities.append(new_tvshow)
         db.session.add(new_tvshow)
