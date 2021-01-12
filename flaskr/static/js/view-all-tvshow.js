@@ -31,7 +31,6 @@ $(document).ready(function() {
     // previous and next page
     pageLinks.forEach((pageLink) => {
         pageLink.addEventListener("click", () => {
-            console.log(totalPages)
             if (pageLink.id === "next" && page < totalPages) {
                 page++;
                 if (search.value) {
@@ -61,13 +60,11 @@ $(document).ready(function() {
         page = 1;
         const query = search.value;
         resetFilter();
-        // console.log(query)
         if (query) {
             resetFilter();
             getTVShows(page, query, []);
         } else {
             if (query == "") {
-                console.log("hahaha")
                 getTVShows(page);
             }
         }
@@ -90,7 +87,7 @@ $(document).ready(function() {
                 genres_id.push(genre_checkboxes[i].value)
             }
         }
-        // console.log(checkboxes_id)
+        
         getTVShows(page, '', genres_id);
     })
 
@@ -98,7 +95,6 @@ $(document).ready(function() {
         $('body').toggleClass('loading');
 
         const data = { "page": page, "query": query, "genres": genres }
-        console.log(data)
         $.ajax({
                 url: '/view-tvshows',
                 type: 'POST',
@@ -106,7 +102,6 @@ $(document).ready(function() {
                 contentType: 'application/json',
                 data: JSON.stringify(data),
                 success: function(resp) {
-                    console.log(resp.tvshows);
                     totalPages = resp.total_pages
                     showTVShows(resp.tvshows, resp.page, resp.total_pages);
                     $('body').toggleClass('loading');
@@ -138,7 +133,6 @@ $(document).ready(function() {
     }
 
     function saveTVShowToDB(tvshow) {
-        console.log(tvshow)
         const data = {
             type: "tvshow",
             href: tvshow.href,
@@ -164,8 +158,7 @@ $(document).ready(function() {
     }
 
     function showTVShowModalDetail(tvshow) {
-        // const detailModal = document.getElementById('detailModal')
-        console.log(tvshow)
+
         $('#detailModalBodyTitle').text("TV Show Details");
         $('#detailModalTitle').text(tvshow['tvshow_title']);
         $('#detailModalRelease').text("Released at " + tvshow['tvshow_release_date']);
@@ -188,36 +181,31 @@ $(document).ready(function() {
         // const ratings = document.querySelectorAll(".tvshow-rating");
         const rating = document.getElementById("detailModalRating")
 
-        // // Iterate over all rating items
-        // ratings.forEach((rating) => {
-            // Get content and get score as an int
-            const ratingContent = rating.innerHTML;
-            console.log(ratingContent)
-            const ratingScore = parseInt(ratingContent, 10);
+        // Get content and get score as an int
+        const ratingContent = rating.innerHTML;
+        const ratingScore = parseInt(ratingContent, 10);
 
-            // Define if the score is good, meh or bad according to its value
-            const scoreClass =
-                ratingScore < 40 ? "bad" : ratingScore < 60 ? "meh" : "good";
+        // Define if the score is good, meh or bad according to its value
+        const scoreClass =
+            ratingScore < 40 ? "bad" : ratingScore < 60 ? "meh" : "good";
 
-            rating.classList.remove("bad", "meh", "good"); 
-            // Add score class to the rating
-            rating.classList.add(scoreClass);
+        rating.classList.remove("bad", "meh", "good"); 
+        // Add score class to the rating
+        rating.classList.add(scoreClass);
 
-            // After adding the class, get its color
-            const ratingColor = window.getComputedStyle(rating).color;
-            console.log("ratingColor:", ratingColor)
+        // After adding the class, get its color
+        const ratingColor = window.getComputedStyle(rating).color;
 
-            // Define the background gradient according to the score and color
-            const gradient = `background: conic-gradient(${ratingColor} ${ratingScore}%, transparent 0 100%)`;
+        // Define the background gradient according to the score and color
+        const gradient = `background: conic-gradient(${ratingColor} ${ratingScore}%, transparent 0 100%)`;
 
-            // Set the gradient as the rating background
-            rating.setAttribute("style", gradient);
+        // Set the gradient as the rating background
+        rating.setAttribute("style", gradient);
 
-            // Wrap the content in a tag to show it above the pseudo element that masks the bar
-            rating.innerHTML = `<span>${ratingScore} ${
-                                ratingContent.indexOf("%") >= 0 ? "<small>%</small>" : ""
-                            }</span>`;
-        // });
+        // Wrap the content in a tag to show it above the pseudo element that masks the bar
+        rating.innerHTML = `<span>${ratingScore} ${
+                            ratingContent.indexOf("%") >= 0 ? "<small>%</small>" : ""
+                        }</span>`;
     }
 
     function showTVShows(tvshows, page=1, total_pages) {
@@ -228,7 +216,6 @@ $(document).ready(function() {
         // totalPageSpan.appendChild(totalPage)
         // tvshowPage.childNodes[0].nodeValue = total_pages
 
-        console.log("TVSHOWS:", tvshows)
         tvshows.forEach((tvshow) => {
             const tvshowId = tvshow.tvshow_id;
             const tvshowTitle = tvshow.tvshow_title;

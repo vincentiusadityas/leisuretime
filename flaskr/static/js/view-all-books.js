@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    // THIS API KEY IS NO LONGER ACTIVE
     const GOODREAD_API_KEY = "FzGldfU37IpDe8ksTmc2w"
     const GOODREAD_API_SEARCH = "https://www.goodreads.com/search/index.xml?"
 
@@ -9,18 +10,15 @@ $(document).ready(function() {
 
     const prevMainContent = document.getElementById("book-content-table");
     const oldContent = prevMainContent.innerHTML;
-    // console.log("PREV: ", oldContent)
 
     // search for a book
     form.addEventListener("submit", (e) => {
         e.preventDefault();
         const params = { key: GOODREAD_API_KEY, q: search.value };
         const query = jQuery.param(params);
-        console.log(GOODREAD_API_SEARCH + query)
 
 
         if (search.value) {
-            console.log("hehehe")
             getBooks(GOODREAD_API_SEARCH + query);
         } else {
             if (search.value == "") {
@@ -45,7 +43,6 @@ $(document).ready(function() {
             contentType: 'application/json',
             data: JSON.stringify(data),
             success: function(response) {
-                console.log(response)
                 const books = response['books']
                 showBooks(books);
                 $('body').toggleClass('loading');
@@ -148,10 +145,9 @@ $(document).ready(function() {
     }
 
     $(".save-book-btn").click(function() {
-        // console.log('hahah')
+        
         book_id = $(this).attr('id').split('-').pop()
-            // console.log("href-" + book_id)
-            // console.log(document.getElementById("ratingElem-" + book_id).innerHTML)
+        
         if ($(this).hasClass("saved")) {
             const data = {
                 type: "book",

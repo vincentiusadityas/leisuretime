@@ -14,7 +14,6 @@ $(document).ready(function() {
             success: function(resp) {
                 document.getElementById("tr-" + book_id).remove();
                 if (document.getElementById("book-content-body").innerHTML.trim() == "") {
-                    // console.log("EMPTY")
                     document.getElementById("empty-book-collection-message").removeAttribute("hidden");
                 }
                 console.log(resp);
@@ -42,7 +41,6 @@ $(document).ready(function() {
 
                 const elem = `<p hidden="" id="empty-movie-collection-message"> You don't have any saved movies :( <br> Go get <a href="/view-all/movies">one</a> now!</p>`
                 if (document.getElementById("movie-content").innerHTML.trim() == elem) {
-                    // console.log("EMPTY")
                     document.getElementById("empty-movie-collection-message").removeAttribute("hidden");
                 }
                 console.log(resp);

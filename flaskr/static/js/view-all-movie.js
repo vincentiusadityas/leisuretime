@@ -18,7 +18,6 @@ $(document).ready(function() {
     let genres_id = [];
 
     // initially get the most popular movies list's first page
-    // getMovies(API_DISCOVER_MOVIE + page);
     getMovies(page);
 
     function resetFilter() {
@@ -32,10 +31,8 @@ $(document).ready(function() {
     // previous and next page
     pageLinks.forEach((pageLink) => {
         pageLink.addEventListener("click", () => {
-            console.log(totalPages)
             if (pageLink.id === "next" && page < totalPages) {
                 page++;
-                // getMovies(API_DISCOVER_MOVIE + page);
                 if (search.value) {
                     getMovies(page, search.value)
                 } else if (genres_id) {
@@ -46,7 +43,6 @@ $(document).ready(function() {
             }
             if (pageLink.id === "previous" && page > 1) {
                 page--;
-                // getMovies(API_DISCOVER_MOVIE + page);
                 if (search.value) {
                     getMovies(page, search.value)
                 } else if (genres_id) {
@@ -64,13 +60,11 @@ $(document).ready(function() {
         page = 1;
         const query = search.value;
         resetFilter();
-        // console.log(query)
         if (query) {
             resetFilter();
             getMovies(page, query, []);
         } else {
             if (query == "") {
-                console.log("hahaha")
                 getMovies(page);
             }
         }
@@ -93,39 +87,13 @@ $(document).ready(function() {
                 genres_id.push(genre_checkboxes[i].value)
             }
         }
-        // console.log(checkboxes_id)
         getMovies(page, '', genres_id);
     })
-
-    // async function getMovies(url) {
-    //     $('body').toggleClass('loading');
-    //     const resp = await fetch(url);
-    //     const respData = await resp.json();
-
-    //     const data = { "data": respData.results }
-
-    //     $.ajax({
-    //             url: '/check-saved-activity',
-    //             type: 'POST',
-    //             dataType: 'json',
-    //             contentType: 'application/json',
-    //             data: JSON.stringify(data),
-    //             success: function(resp) {
-    //                 console.log(resp.status);
-    //                 showMovies(resp.movies);
-    //                 $('body').toggleClass('loading');
-    //             },
-    //             error: function(err) {
-    //                 console.log(err);
-    //             }
-    //         })
-    // }
 
     async function getMovies(page=1, query="", genres=[]) {
         $('body').toggleClass('loading');
 
         const data = { "page": page, "query": query, "genres": genres }
-        console.log(data)
         $.ajax({
                 url: '/view-movies',
                 type: 'POST',
@@ -133,7 +101,6 @@ $(document).ready(function() {
                 contentType: 'application/json',
                 data: JSON.stringify(data),
                 success: function(resp) {
-                    console.log(resp.movies);
                     totalPages = resp.total_pages
                     showMovies(resp.movies, resp.page, resp.total_pages);
                     $('body').toggleClass('loading');
@@ -215,36 +182,31 @@ $(document).ready(function() {
         // const ratings = document.querySelectorAll(".movie-rating");
         const rating = document.getElementById("detailModalRating")
 
-        // // Iterate over all rating items
-        // ratings.forEach((rating) => {
-            // Get content and get score as an int
-            const ratingContent = rating.innerHTML;
-            console.log(ratingContent)
-            const ratingScore = parseInt(ratingContent, 10);
+        // Get content and get score as an int
+        const ratingContent = rating.innerHTML;
+        const ratingScore = parseInt(ratingContent, 10);
 
-            // Define if the score is good, meh or bad according to its value
-            const scoreClass =
-                ratingScore < 40 ? "bad" : ratingScore < 60 ? "meh" : "good";
+        // Define if the score is good, meh or bad according to its value
+        const scoreClass =
+            ratingScore < 40 ? "bad" : ratingScore < 60 ? "meh" : "good";
 
-            rating.classList.remove("bad", "meh", "good"); 
-            // Add score class to the rating
-            rating.classList.add(scoreClass);
+        rating.classList.remove("bad", "meh", "good"); 
+        // Add score class to the rating
+        rating.classList.add(scoreClass);
 
-            // After adding the class, get its color
-            const ratingColor = window.getComputedStyle(rating).color;
-            console.log("ratingColor:", ratingColor)
+        // After adding the class, get its color
+        const ratingColor = window.getComputedStyle(rating).color;
 
-            // Define the background gradient according to the score and color
-            const gradient = `background: conic-gradient(${ratingColor} ${ratingScore}%, transparent 0 100%)`;
+        // Define the background gradient according to the score and color
+        const gradient = `background: conic-gradient(${ratingColor} ${ratingScore}%, transparent 0 100%)`;
 
-            // Set the gradient as the rating background
-            rating.setAttribute("style", gradient);
+        // Set the gradient as the rating background
+        rating.setAttribute("style", gradient);
 
-            // Wrap the content in a tag to show it above the pseudo element that masks the bar
-            rating.innerHTML = `<span>${ratingScore} ${
-                                ratingContent.indexOf("%") >= 0 ? "<small>%</small>" : ""
-                            }</span>`;
-        // });
+        // Wrap the content in a tag to show it above the pseudo element that masks the bar
+        rating.innerHTML = `<span>${ratingScore} ${
+                            ratingContent.indexOf("%") >= 0 ? "<small>%</small>" : ""
+                        }</span>`;
     }
 
 
@@ -258,7 +220,6 @@ $(document).ready(function() {
         // totalPageSpan.appendChild(totalPage)
         // moviePage.childNodes[0].nodeValue = total_pages
 
-        console.log("MOVIES:", movies)
         movies.forEach((movie) => {
             const movieId = movie.movie_id;
             const movieTitle = movie.movie_title;
